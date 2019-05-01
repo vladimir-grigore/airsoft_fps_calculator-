@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class JoulesCalculator extends StatefulWidget {
-  JoulesCalculator({Key key}) : super(key: key);
+class SpeedCalculator extends StatefulWidget {
+  SpeedCalculator({Key key}) : super(key: key);
 
   @override
-  _JoulesCalculator createState() => _JoulesCalculator();
+  _SpeedCalculator createState() => _SpeedCalculator();
 }
 
-class _JoulesCalculator extends State<JoulesCalculator> {
-  TextEditingController _speedController;
+class _SpeedCalculator extends State<SpeedCalculator> {
+  TextEditingController _joulesController;
   TextEditingController _weightController;
   bool _loopActive = false;
   bool _buttonPressed = false;
-  String joules = "0";
+  String speed = "0";
 
   @override
   void initState() {
-    _speedController = TextEditingController();
+    _joulesController = TextEditingController();
     _weightController = TextEditingController();
-
     super.initState();
   }
 
-  void calculateJoules() {
-    double _joules = 0.5 * (double.parse(_weightController.text) / 1000) * pow(int.parse(_speedController.text), 2);
+  void calculateSpeed() {
+    double _speed = sqrt((2 * double.parse(_joulesController.text)) / (double.parse(_weightController.text) / 1000));
+
     setState(() {
-      joules = _joules.toStringAsFixed(2);
+      speed = _speed.toStringAsFixed(2);
     });
   }
 
-  void _increaseSpeedWhilePressed() async {
+  void _increaseJoulesWhilePressed() async {
     if(_loopActive) return;
     _loopActive = true;
 
     while(_buttonPressed) {
+      if(_joulesController.text == "") {
+        _joulesController.text = "0";
+      }
+
       setState(() {
-        if(_speedController.text == "") {
-          _speedController.text = "0";
-        }
-        _speedController.text = (int.parse(_speedController.text) + 1).toString();
+        _joulesController.text = (double.parse(_joulesController.text) + 0.01).toStringAsFixed(2);
       });
 
       await Future.delayed(Duration(milliseconds: 100));
@@ -48,17 +49,17 @@ class _JoulesCalculator extends State<JoulesCalculator> {
     _loopActive = false;
   }
 
-  void _decreaseSpeedWhilePressed() async {
+  void _decreaseJoulesWhilePressed() async {
     if(_loopActive) return;
     _loopActive = true;
 
     while(_buttonPressed) {
-      if(_speedController.text == "") {
-        _speedController.text = "0";
+      if(_joulesController.text == "") {
+        _joulesController.text = "0";
       }
 
       setState(() {
-        _speedController.text = (int.parse(_speedController.text) - 1).toString();
+        _joulesController.text = (double.parse(_joulesController.text) - 0.01).toStringAsFixed(2);
       });
 
       await Future.delayed(Duration(milliseconds: 100));
@@ -112,7 +113,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           child: Text(
-            "Calculate power based on bb weight and speed",
+            "Calculate speed based on bb weight and power",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, fontFamily: "Yantramanav-Thin", fontWeight: FontWeight.w400),
           ),
@@ -126,13 +127,13 @@ class _JoulesCalculator extends State<JoulesCalculator> {
               child: Listener(
                 onPointerDown: (details) {
                   _buttonPressed = true;
-                  _decreaseSpeedWhilePressed();
+                  _decreaseJoulesWhilePressed();
                 },
                 onPointerUp: (details) {
                   _buttonPressed = false;
                 },
                 child: Icon(Icons.remove),
-              )
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -146,11 +147,11 @@ class _JoulesCalculator extends State<JoulesCalculator> {
                     primaryColorDark: Colors.black,
                   ),
                   child: TextField(
-                    controller: _speedController,
+                    controller: _joulesController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: "MPS",
+                      labelText: "Joules",
                     ),
                     onChanged: (input) {
                       setState(() {});
@@ -165,7 +166,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
               child: Listener(
                 onPointerDown: (details) {
                   _buttonPressed = true;
-                  _increaseSpeedWhilePressed();
+                  _increaseJoulesWhilePressed();
                 },
                 onPointerUp: (details) {
                   _buttonPressed = false;
@@ -235,7 +236,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
         ),
         RaisedButton(
           onPressed: () {
-            calculateJoules();
+            calculateSpeed();
           },
           color: Colors.indigo,
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -244,7 +245,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
         ),
         Padding(
           padding: EdgeInsets.all(10.0),
-          child: Text("Energy: $joules Joules", style: TextStyle(fontSize: 20.0)),
+          child: Text("Speed: $speed m/s", style: TextStyle(fontSize: 20.0)),
         ),
       ],
     );
