@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class JoulesCalculator extends StatefulWidget {
-  JoulesCalculator({Key key}) : super(key: key);
+  final String system;
+  JoulesCalculator({Key key, this.system}) : super(key: key);
 
   @override
   _JoulesCalculator createState() => _JoulesCalculator();

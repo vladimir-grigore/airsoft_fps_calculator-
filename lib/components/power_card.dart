@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:airsoft_fps_calculator/components/joules_calculator.dart';
 
 class PowerCard extends StatefulWidget {
+  final String system;
+  PowerCard({Key key, this.system}) : super(key: key);
+  
   @override
   _PowerCard createState() => _PowerCard();
 }
@@ -96,7 +99,7 @@ class _PowerCard extends State<PowerCard> {
                           ),
                         ),
                     ),
-                    JoulesCalculator(),
+                    JoulesCalculator(system: widget.system),
                   ],
                 ),
               ),

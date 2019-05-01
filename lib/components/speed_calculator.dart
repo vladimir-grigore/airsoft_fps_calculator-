@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class SpeedCalculator extends StatefulWidget {
-  SpeedCalculator({Key key}) : super(key: key);
+  final String system;
+  SpeedCalculator({Key key, this.system}) : super(key: key);
 
   @override
   _SpeedCalculator createState() => _SpeedCalculator();

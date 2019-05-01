@@ -33,11 +33,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String system = "metric";
+
+  void swapMeasurementSystem() {
+    if(system == "metric") {
+      setState(() {
+        this.system = "imperial";
+      });
+    } else {
+      setState(() {
+        this.system = "metric";
+      });
+    }
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Airsoft Calculator"),
+        actions: <Widget>[
+          IconButton(
+            iconSize: 36,
+            icon: Icon(Icons.swap_horiz),
+            onPressed: (){
+              swapMeasurementSystem();
+            },
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -56,9 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           children: <Widget>[
             SizedBox(height: 32.0),
-            PowerCard(),
+            PowerCard(system: system),
             SizedBox(height: 15.0),
-            SpeedCard(),
+            SpeedCard(system: system),
           ], 
         ),
       ),

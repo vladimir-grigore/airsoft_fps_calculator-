@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:airsoft_fps_calculator/components/speed_calculator.dart';
 
 class SpeedCard extends StatefulWidget {
+  final String system;
+  SpeedCard({Key key, this.system}) : super(key: key);
+
   @override
   _SpeedCard createState() => _SpeedCard();
 }
@@ -96,7 +99,7 @@ class _SpeedCard extends State<SpeedCard> {
                           ),
                         ),
                     ),
-                    SpeedCalculator(),
+                    SpeedCalculator(system: widget.system),
                   ],
                 ),
               ),
