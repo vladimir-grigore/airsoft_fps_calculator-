@@ -246,7 +246,7 @@ class _SpeedCalculator extends State<SpeedCalculator> {
         ),
         Padding(
           padding: EdgeInsets.all(10.0),
-          child: Text("Speed: $speed m/s", style: TextStyle(fontSize: 20.0)),
+          child: Text("Speed: $speed ${widget.system == 'metric' ? "m/s" : "fps"}", style: TextStyle(fontSize: 20.0)),
         ),
       ],
     );

@@ -24,8 +24,16 @@ class _JoulesCalculator extends State<JoulesCalculator> {
     super.initState();
   }
 
+  double convertSpeed() {
+    if(widget.system == "imperial") {
+      return double.parse(_speedController.text) * 0.3048;
+    } else {
+      return double.parse(_speedController.text);
+    }
+  }
+
   void calculateJoules() {
-    double _joules = 0.5 * (double.parse(_weightController.text) / 1000) * pow(int.parse(_speedController.text), 2);
+    double _joules = 0.5 * (double.parse(_weightController.text) / 1000) * pow(convertSpeed(), 2);
     setState(() {
       joules = _joules.toStringAsFixed(2);
     });
@@ -151,7 +159,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: "MPS",
+                      labelText: widget.system == "metric" ? "MPS" : "FPS",
                     ),
                     onChanged: (input) {
                       setState(() {});
