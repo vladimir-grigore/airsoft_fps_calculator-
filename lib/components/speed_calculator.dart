@@ -112,7 +112,7 @@ class _SpeedCalculator extends State<SpeedCalculator> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
             "Calculate speed based on bb weight and power",
             textAlign: TextAlign.center,
@@ -245,7 +245,7 @@ class _SpeedCalculator extends State<SpeedCalculator> {
           shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
         ),
         Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(15.0),
           child: Text("Speed: $speed ${widget.system == 'metric' ? "m/s" : "fps"}", style: TextStyle(fontSize: 20.0)),
         ),
       ],

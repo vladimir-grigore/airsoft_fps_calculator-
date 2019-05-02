@@ -14,7 +14,7 @@ class SpeedCard extends StatefulWidget {
 }
 
 class _SpeedCard extends State<SpeedCard> {
-  double _bodyHeight = 150.0;
+  double _bodyHeight = 120.0;
   bool isExpanded;
 
   double titleFontSize(BuildContext context) {
@@ -24,7 +24,7 @@ class _SpeedCard extends State<SpeedCard> {
   @override
   void didUpdateWidget(SpeedCard oldWidget) {
     isExpanded = widget.isExpanded;
-    this._bodyHeight = isExpanded ? 450 : 150.0;
+    this._bodyHeight = isExpanded ? 380 : 120.0;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -79,7 +79,7 @@ class _SpeedCard extends State<SpeedCard> {
                   Container(
                     alignment: Alignment.topRight,
                     child: Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(5.0),
                       child: IconButton(
                         iconSize: 40.0,
                         icon: Icon(Icons.keyboard_arrow_down),
@@ -101,7 +101,7 @@ class _SpeedCard extends State<SpeedCard> {
                       width: MediaQuery.of(context).size.width,
                       alignment: Alignment.centerRight,
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.all(5.0),
                         child: IconButton(
                           iconSize: 40.0,
                           icon: Icon(Icons.keyboard_arrow_up),

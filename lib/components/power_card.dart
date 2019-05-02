@@ -14,13 +14,13 @@ class PowerCard extends StatefulWidget {
 }
 
 class _PowerCard extends State<PowerCard> {
-  double _bodyHeight = 150.0;
+  double _bodyHeight = 120.0;
   bool isExpanded;
 
   @override
   void didUpdateWidget(PowerCard oldWidget) {
     isExpanded = widget.isExpanded;
-    this._bodyHeight = isExpanded ? 450 : 150.0;
+    this._bodyHeight = isExpanded ? 380 : 120.0;
     super.didUpdateWidget(oldWidget);
   }
 
@@ -78,7 +78,7 @@ class _PowerCard extends State<PowerCard> {
                   Container(
                     alignment: Alignment.topRight,
                     child: Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(5.0),
                       child: IconButton(
                         iconSize: 40.0,
                         icon: Icon(Icons.keyboard_arrow_down),
@@ -100,7 +100,7 @@ class _PowerCard extends State<PowerCard> {
                       width: MediaQuery.of(context).size.width,
                       alignment: Alignment.centerRight,
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: EdgeInsets.all(5.0),
                         child: IconButton(
                           iconSize: 40.0,
                           icon: Icon(Icons.keyboard_arrow_up),
@@ -117,7 +117,7 @@ class _PowerCard extends State<PowerCard> {
                 ),
               ),
             ),
-          ),              
+          ),
         ),
       ),
     );

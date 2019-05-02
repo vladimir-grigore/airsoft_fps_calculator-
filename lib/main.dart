@@ -99,9 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: ListView(
           children: <Widget>[
-            SizedBox(height: 32.0),
+            SizedBox(height: 10.0),
             PowerCard(system: system, isExpanded: powerCardExpanded, onExpand: updateExpandedState),
-            SizedBox(height: 15.0),
             SpeedCard(system: system, isExpanded: speedCardExpanded, onExpand: updateExpandedState),
           ], 
         ),

@@ -119,7 +119,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
     return Column(
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
             "Calculate power based on bb weight and speed",
             textAlign: TextAlign.center,
@@ -252,7 +252,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
           shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
         ),
         Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(15.0),
           child: Text("Energy: $joules Joules", style: TextStyle(fontSize: 20.0)),
         ),
       ],
