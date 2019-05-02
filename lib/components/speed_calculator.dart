@@ -23,12 +23,31 @@ class _SpeedCalculator extends State<SpeedCalculator> {
     super.initState();
   }
 
-  void calculateSpeed() {
-    double _speed = sqrt((2 * double.parse(_joulesController.text)) / (double.parse(_weightController.text) / 1000));
+  @override
+  void didUpdateWidget(SpeedCalculator oldWidget) {
+    calculateSpeed();
+    super.didUpdateWidget(oldWidget);
+  }
 
-    setState(() {
-      speed = _speed.toStringAsFixed(2);
-    });
+  double convertSpeed(speed) {
+    if(widget.system == "imperial") {
+      return speed * 3.2808;
+    } else {
+      return speed;
+    }
+  }
+
+  void calculateSpeed() {
+    if(_joulesController.text == "" || _weightController.text == "") {
+      setState(() {
+        speed = 0.toStringAsFixed(2);
+      });
+    } else {
+      double _speed = sqrt((2 * double.parse(_joulesController.text)) / (double.parse(_weightController.text) / 1000));
+      setState(() {
+        speed = convertSpeed(_speed).toStringAsFixed(2);
+      });
+    }
   }
 
   void _increaseJoulesWhilePressed() async {
@@ -154,9 +173,7 @@ class _SpeedCalculator extends State<SpeedCalculator> {
                       border: OutlineInputBorder(),
                       labelText: "Joules",
                     ),
-                    onChanged: (input) {
-                      setState(() {});
-                    },
+                    onChanged: (input) {},
                   ),
                 ),
               ),

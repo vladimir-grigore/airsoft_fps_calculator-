@@ -24,6 +24,22 @@ class _JoulesCalculator extends State<JoulesCalculator> {
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(JoulesCalculator oldWidget) {
+    if(widget.system != oldWidget.system) {
+      if(widget.system == "imperial" && _speedController.text != ""){
+        _speedController.text = (int.parse(_speedController.text) * 3.2808).toStringAsFixed(0);
+      }
+
+      if(widget.system == "metric" && _speedController.text != ""){
+        _speedController.text = (int.parse(_speedController.text) * 0.3048).toStringAsFixed(0);
+      }
+
+    }
+
+    super.didUpdateWidget(oldWidget);
+  }
+
   double convertSpeed() {
     if(widget.system == "imperial") {
       return double.parse(_speedController.text) * 0.3048;
@@ -33,10 +49,14 @@ class _JoulesCalculator extends State<JoulesCalculator> {
   }
 
   void calculateJoules() {
-    double _joules = 0.5 * (double.parse(_weightController.text) / 1000) * pow(convertSpeed(), 2);
-    setState(() {
-      joules = _joules.toStringAsFixed(2);
-    });
+    if(_weightController.text == "" || _speedController.text == "") {
+      joules = 0.toStringAsFixed(2);
+    } else {
+      double _joules = 0.5 * (double.parse(_weightController.text) / 1000) * pow(convertSpeed(), 2);
+      setState(() {
+        joules = _joules.toStringAsFixed(2);
+      });
+    }
   }
 
   void _increaseSpeedWhilePressed() async {
@@ -161,9 +181,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
                       border: OutlineInputBorder(),
                       labelText: widget.system == "metric" ? "MPS" : "FPS",
                     ),
-                    onChanged: (input) {
-                      setState(() {});
-                    },
+                    onChanged: (input) {},
                   ),
                 ),
               ),
