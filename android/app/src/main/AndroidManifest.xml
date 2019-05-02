@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="airsoft_fps_calculator"
+        android:label="Simple Airsoft Calculator"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -12,6 +12,8 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>airsoft_fps_calculator</string>
+	<key>CFBundleDisplayName</key>
+	<string>Simple Airsoft Calculator</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

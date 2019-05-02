@@ -1,4 +1,4 @@
-# airsoft_fps_calculator
+# Simple Airsoft Calculator
 
 A new Flutter project.
 
