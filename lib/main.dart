@@ -34,6 +34,28 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String system = "metric";
+  bool powerCardExpanded = false;
+  bool speedCardExpanded = false;
+
+  void updateExpandedState(widgetName) {
+    if(widgetName == "powerCard") {
+      setState(() {
+        powerCardExpanded = !powerCardExpanded;
+        if(speedCardExpanded == true) {
+          speedCardExpanded = false;
+        }
+      });
+    }
+
+    if(widgetName == "speedCard") {
+      setState(() {
+        speedCardExpanded = !speedCardExpanded;
+        if(powerCardExpanded == true) {
+          powerCardExpanded = false;
+        }
+      });
+    }
+  }
 
   void swapMeasurementSystem() {
     if(system == "metric") {
@@ -78,9 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           children: <Widget>[
             SizedBox(height: 32.0),
-            PowerCard(system: system),
+            PowerCard(system: system, isExpanded: powerCardExpanded, onExpand: updateExpandedState),
             SizedBox(height: 15.0),
-            SpeedCard(system: system),
+            SpeedCard(system: system, isExpanded: speedCardExpanded, onExpand: updateExpandedState),
           ], 
         ),
       ),

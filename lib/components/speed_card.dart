@@ -4,7 +4,10 @@ import 'package:airsoft_fps_calculator/components/speed_calculator.dart';
 
 class SpeedCard extends StatefulWidget {
   final String system;
-  SpeedCard({Key key, this.system}) : super(key: key);
+  final bool isExpanded;
+  final Function onExpand;
+
+  SpeedCard({Key key, this.system, this.isExpanded, this.onExpand}) : super(key: key);
 
   @override
   _SpeedCard createState() => _SpeedCard();
@@ -12,10 +15,23 @@ class SpeedCard extends StatefulWidget {
 
 class _SpeedCard extends State<SpeedCard> {
   double _bodyHeight = 150.0;
-  bool isExpanded = false;
+  bool isExpanded;
 
   double titleFontSize(BuildContext context) {
     return MediaQuery.of(context).size.width / 18;
+  }
+
+  @override
+  void didUpdateWidget(SpeedCard oldWidget) {
+    isExpanded = widget.isExpanded;
+    this._bodyHeight = isExpanded ? 450 : 150.0;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void initState() {
+    isExpanded = widget.isExpanded;
+    super.initState();
   }
 
   @override
@@ -69,8 +85,7 @@ class _SpeedCard extends State<SpeedCard> {
                         icon: Icon(Icons.keyboard_arrow_down),
                           onPressed: () {
                             setState(() {
-                              this.isExpanded = !isExpanded;
-                              this._bodyHeight = isExpanded ? 450 : 150.0;
+                              widget.onExpand("speedCard");
                             });
                           },
                         ),
@@ -92,8 +107,7 @@ class _SpeedCard extends State<SpeedCard> {
                           icon: Icon(Icons.keyboard_arrow_up),
                             onPressed: () {
                               setState(() {
-                                this.isExpanded = !isExpanded;
-                                this._bodyHeight = isExpanded ? 450 : 150.0;
+                                widget.onExpand("speedCard");
                               });
                             },
                           ),

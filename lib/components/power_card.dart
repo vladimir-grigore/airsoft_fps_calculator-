@@ -4,7 +4,10 @@ import 'package:airsoft_fps_calculator/components/joules_calculator.dart';
 
 class PowerCard extends StatefulWidget {
   final String system;
-  PowerCard({Key key, this.system}) : super(key: key);
+  final bool isExpanded;
+  final Function onExpand;
+
+  PowerCard({Key key, this.system, this.isExpanded, this.onExpand}) : super(key: key);
   
   @override
   _PowerCard createState() => _PowerCard();
@@ -12,7 +15,19 @@ class PowerCard extends StatefulWidget {
 
 class _PowerCard extends State<PowerCard> {
   double _bodyHeight = 150.0;
-  bool isExpanded = false;
+  bool isExpanded;
+
+  @override
+  void didUpdateWidget(PowerCard oldWidget) {
+    isExpanded = widget.isExpanded;
+    this._bodyHeight = isExpanded ? 450 : 150.0;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void initState() {
+    isExpanded = widget.isExpanded;
+    super.initState();
+  }
 
   double titleFontSize(BuildContext context) {
     return MediaQuery.of(context).size.width / 18;
@@ -69,8 +84,7 @@ class _PowerCard extends State<PowerCard> {
                         icon: Icon(Icons.keyboard_arrow_down),
                           onPressed: () {
                             setState(() {
-                              this.isExpanded = !isExpanded;
-                              this._bodyHeight = isExpanded ? 450 : 150.0;
+                              widget.onExpand("powerCard");
                             });
                           },
                         ),
@@ -92,8 +106,7 @@ class _PowerCard extends State<PowerCard> {
                           icon: Icon(Icons.keyboard_arrow_up),
                             onPressed: () {
                               setState(() {
-                                this.isExpanded = !isExpanded;
-                                this._bodyHeight = isExpanded ? 450 : 150.0;
+                                widget.onExpand("powerCard");
                               });
                             },
                           ),
