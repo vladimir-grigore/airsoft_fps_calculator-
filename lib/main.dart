@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'dart:io' show Platform;
 import 'package:firebase_admob/firebase_admob.dart';
 
 import 'package:airsoft_fps_calculator/components/power_card.dart';
@@ -42,14 +43,21 @@ class _MyHomePageState extends State<MyHomePage> {
     nonPersonalizedAds: true,
   );
 
+  String getAdUnitId() {
+    if(Platform.isAndroid) {
+     return "ca-app-pub-6798433568226907/7035588275";
+    } else if(Platform.isIOS) {
+     return "ca-app-pub-6798433568226907/8521018195";
+    } else {
+      return BannerAd.testAdUnitId;
+    }
+  }
+
   BannerAd createBannerAd() {
     return BannerAd(
-      adUnitId: BannerAd.testAdUnitId,
+      adUnitId: getAdUnitId(),
       size: AdSize.smartBanner,
       targetingInfo: targetingInfo,
-      // listener: (MobileAdEvent event) {
-      //   print("BannerAd event $event");
-      // }
     );
   }
 
@@ -89,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void scrollToBottom() async {
-    await Future.delayed(Duration(milliseconds: 250));
+    await Future.delayed(Duration(milliseconds: 300));
     
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
