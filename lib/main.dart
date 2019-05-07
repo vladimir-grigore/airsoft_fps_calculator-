@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 import 'package:airsoft_fps_calculator/components/power_card.dart';
 import 'package:airsoft_fps_calculator/components/speed_card.dart';
@@ -36,8 +37,47 @@ class _MyHomePageState extends State<MyHomePage> {
   String system = "metric";
   bool powerCardExpanded = false;
   bool speedCardExpanded = false;
+  BannerAd _bannerAd;
+  ScrollController _scrollController = ScrollController();
+
+  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+    // testDevices: testDevice != null ? <String>[testDevice] : null,
+    keywords: <String>['airsoft'],
+    nonPersonalizedAds: true,
+  );
+
+  BannerAd createBannerAd() {
+    return BannerAd(
+      adUnitId: BannerAd.testAdUnitId,
+      size: AdSize.smartBanner,
+      targetingInfo: targetingInfo,
+      listener: (MobileAdEvent event) {
+        print("BannerAd event $event");
+      }
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseAdMob.instance.initialize(appId: FirebaseAdMob.testAppId);
+    _bannerAd = createBannerAd()..load()..show();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
+  }
 
   void updateExpandedState(widgetName) {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 1000),
+      curve: Curves.easeOut,
+    );
+
     if(widgetName == "powerCard") {
       setState(() {
         powerCardExpanded = !powerCardExpanded;
@@ -97,12 +137,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           )
         ),
-        child: ListView(
-          children: <Widget>[
-            SizedBox(height: 10.0),
-            PowerCard(system: system, isExpanded: powerCardExpanded, onExpand: updateExpandedState),
-            SpeedCard(system: system, isExpanded: speedCardExpanded, onExpand: updateExpandedState),
-          ], 
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 50.0),
+          child: ListView(
+            controller: _scrollController,
+            children: <Widget>[
+              SizedBox(height: 10.0),
+              PowerCard(system: system, isExpanded: powerCardExpanded, onExpand: updateExpandedState),
+              SpeedCard(system: system, isExpanded: speedCardExpanded, onExpand: updateExpandedState),
+            ], 
+          ),
         ),
       ),
     );

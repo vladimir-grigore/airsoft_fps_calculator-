@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "449825279165",
+    "firebase_url": "https://simple-airsoft-calculator.firebaseio.com",
+    "project_id": "simple-airsoft-calculator",
+    "storage_bucket": "simple-airsoft-calculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449825279165:android:c7b55ebbda61a700",
+        "android_client_info": {
+          "package_name": "com.example.simple_airsoft_calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449825279165-dhsnf9cp9tjhlq4dkom3ledh3stn3nt2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPVBtzy_0joWzkyDgT_i5yoDR4DyZqwIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449825279165-dhsnf9cp9tjhlq4dkom3ledh3stn3nt2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-6798433568226907~4105693670"
+    }
+  ],
+  "configuration_version": "1"
+}
