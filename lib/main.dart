@@ -6,9 +6,6 @@ import 'package:airsoft_fps_calculator/components/power_card.dart';
 import 'package:airsoft_fps_calculator/components/speed_card.dart';
 
 void main() {
-  // Used for displaying padding and component dimensions
-  debugPaintSizeEnabled=false;
-
   runApp(MyApp());
 }
 
@@ -41,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
   ScrollController _scrollController = ScrollController();
 
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    // testDevices: testDevice != null ? <String>[testDevice] : null,
     keywords: <String>['airsoft'],
     nonPersonalizedAds: true,
   );
@@ -51,9 +47,9 @@ class _MyHomePageState extends State<MyHomePage> {
       adUnitId: BannerAd.testAdUnitId,
       size: AdSize.smartBanner,
       targetingInfo: targetingInfo,
-      listener: (MobileAdEvent event) {
-        print("BannerAd event $event");
-      }
+      // listener: (MobileAdEvent event) {
+      //   print("BannerAd event $event");
+      // }
     );
   }
 
