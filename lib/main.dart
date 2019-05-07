@@ -72,12 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void updateExpandedState(widgetName) {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 1000),
-      curve: Curves.easeOut,
-    );
-
     if(widgetName == "powerCard") {
       setState(() {
         powerCardExpanded = !powerCardExpanded;
@@ -94,7 +88,18 @@ class _MyHomePageState extends State<MyHomePage> {
           powerCardExpanded = false;
         }
       });
+      scrollToBottom();
     }
+  }
+
+  void scrollToBottom() async {
+    await Future.delayed(Duration(milliseconds: 250));
+    
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 100),
+      curve: Curves.easeOut,
+    );
   }
 
   void swapMeasurementSystem() {
