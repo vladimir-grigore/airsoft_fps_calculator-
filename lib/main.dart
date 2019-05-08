@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String system = "metric";
+  String system = "imperial";
   bool powerCardExpanded = false;
   bool speedCardExpanded = false;
   BannerAd _bannerAd;
@@ -44,13 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
   );
 
   String getAdUnitId() {
-    if(Platform.isAndroid) {
-     return "ca-app-pub-6798433568226907/7035588275";
-    } else if(Platform.isIOS) {
-     return "ca-app-pub-6798433568226907/8521018195";
-    } else {
-      return BannerAd.testAdUnitId;
-    }
+    // if(Platform.isAndroid) {
+    //  return "ca-app-pub-6798433568226907/7035588275";
+    // } else if(Platform.isIOS) {
+    //  return "ca-app-pub-6798433568226907/8521018195";
+    // } else {
+    //   return BannerAd.testAdUnitId;
+    // }
+    return BannerAd.testAdUnitId;
   }
 
   BannerAd createBannerAd() {
@@ -120,19 +121,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text("Airsoft Calculator"),
         actions: <Widget>[
-          IconButton(
-            iconSize: 36,
-            icon: Icon(Icons.swap_horiz),
-            onPressed: (){
-              swapMeasurementSystem();
-            },
+          Padding(
+            padding: EdgeInsets.only(right: 15.0),
+            child: Row(
+              children: <Widget>[
+                Text("MPS"),
+                IconButton(
+                  iconSize: 36,
+                  icon: Icon(Icons.swap_horiz),
+                  onPressed: (){
+                    swapMeasurementSystem();
+                  },
+                ),
+                Text("FPS"),
+              ],
+            ),
           ),
         ],
       ),
       body: Container(
+        padding: EdgeInsets.only(bottom: 50.0),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -146,16 +158,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           )
         ),
-        child: Padding(
-          padding: EdgeInsets.only(bottom: 50.0),
-          child: ListView(
-            controller: _scrollController,
-            children: <Widget>[
-              SizedBox(height: 10.0),
-              PowerCard(system: system, isExpanded: powerCardExpanded, onExpand: updateExpandedState),
-              SpeedCard(system: system, isExpanded: speedCardExpanded, onExpand: updateExpandedState),
-            ], 
-          ),
+        child: ListView(
+          controller: _scrollController,
+          children: <Widget>[
+            SizedBox(height: 10.0),
+            PowerCard(system: system, isExpanded: powerCardExpanded, onExpand: updateExpandedState),
+            SpeedCard(system: system, isExpanded: speedCardExpanded, onExpand: updateExpandedState),
+          ], 
         ),
       ),
     );

@@ -96,14 +96,21 @@ class _PowerCard extends State<PowerCard> {
                 height: MediaQuery.of(context).size.height,
                 child: ListView(
                   children: <Widget>[
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: IconButton(
-                          iconSize: 40.0,
-                          icon: Icon(Icons.keyboard_arrow_up),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Icon(Icons.scatter_plot, size: 60.0,),
+                        ),
+                        Text('Power Calculator', 
+                          style: TextStyle(fontSize: titleFontSize(context), fontWeight: FontWeight.bold)
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                          child: IconButton(
+                            iconSize: 40.0,
+                            icon: Icon(Icons.keyboard_arrow_up),
                             onPressed: () {
                               setState(() {
                                 widget.onExpand("powerCard");
@@ -111,6 +118,7 @@ class _PowerCard extends State<PowerCard> {
                             },
                           ),
                         ),
+                      ],
                     ),
                     JoulesCalculator(system: widget.system),
                   ],

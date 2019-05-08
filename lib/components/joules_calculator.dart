@@ -51,6 +51,8 @@ class _JoulesCalculator extends State<JoulesCalculator> {
   void calculateJoules() {
     if(_weightController.text == "" || _speedController.text == "") {
       joules = 0.toStringAsFixed(2);
+    } else if(double.parse(_weightController.text) < 0 || double.parse(_speedController.text) < 0) {
+      joules = 0.toStringAsFixed(2);
     } else {
       double _joules = 0.5 * (double.parse(_weightController.text) / 1000) * pow(convertSpeed(), 2);
       setState(() {
@@ -141,7 +143,7 @@ class _JoulesCalculator extends State<JoulesCalculator> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
-            "Calculate power based on bb weight and speed",
+            'Calculate Joules based on bb weight and nozzle velocity',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, fontFamily: "Yantramanav-Thin", fontWeight: FontWeight.w400),
           ),

@@ -42,6 +42,10 @@ class _SpeedCalculator extends State<SpeedCalculator> {
       setState(() {
         speed = 0.toStringAsFixed(2);
       });
+    } else if(double.parse(_joulesController.text) < 0 || double.parse(_weightController.text) < 0) {
+      setState(() {
+        speed = 0.toStringAsFixed(2);
+      });
     } else {
       double _speed = sqrt((2 * double.parse(_joulesController.text)) / (double.parse(_weightController.text) / 1000));
       setState(() {
@@ -133,7 +137,7 @@ class _SpeedCalculator extends State<SpeedCalculator> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
-            "Calculate speed based on bb weight and power",
+            'Calculate nozzle velocity based on bb weight and power (Joules)',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, fontFamily: "Yantramanav-Thin", fontWeight: FontWeight.w400),
           ),
