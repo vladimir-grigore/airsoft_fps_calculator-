@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:io' show Platform;
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:flutter/services.dart';
 
 import 'package:airsoft_fps_calculator/components/power_card.dart';
 import 'package:airsoft_fps_calculator/components/speed_card.dart';
@@ -44,14 +45,13 @@ class _MyHomePageState extends State<MyHomePage> {
   );
 
   String getAdUnitId() {
-    // if(Platform.isAndroid) {
-    //  return "ca-app-pub-6798433568226907/7035588275";
-    // } else if(Platform.isIOS) {
-    //  return "ca-app-pub-6798433568226907/8521018195";
-    // } else {
-    //   return BannerAd.testAdUnitId;
-    // }
-    return BannerAd.testAdUnitId;
+    if(Platform.isAndroid) {
+     return "ca-app-pub-6798433568226907/7035588275";
+    } else if(Platform.isIOS) {
+     return "ca-app-pub-6798433568226907/8521018195";
+    } else {
+      return BannerAd.testAdUnitId;
+    }
   }
 
   BannerAd createBannerAd() {
@@ -65,6 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
 
     FirebaseAdMob.instance.initialize(appId: FirebaseAdMob.testAppId);
     _bannerAd = createBannerAd()..load()..show();
