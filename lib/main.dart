@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'dart:io' show Platform;
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/services.dart';
-
 import 'package:airsoft_fps_calculator/components/power_card.dart';
 import 'package:airsoft_fps_calculator/components/speed_card.dart';
 
@@ -39,11 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
   BannerAd _bannerAd;
   ScrollController _scrollController = ScrollController();
 
-  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    keywords: <String>['airsoft'],
-    nonPersonalizedAds: true,
-  );
-
   String getAdUnitId() {
     if(Platform.isAndroid) {
      return "ca-app-pub-6798433568226907/7035588275";
@@ -53,6 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
       return BannerAd.testAdUnitId;
     }
   }
+
+  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+    keywords: <String>['airsoft'],
+    nonPersonalizedAds: true,
+  );
 
   BannerAd createBannerAd() {
     return BannerAd(
@@ -102,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void scrollToBottom() async {
-    await Future.delayed(Duration(milliseconds: 300));
+    await Future.delayed(Duration(milliseconds: 350));
     
     _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
@@ -125,7 +124,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text("Airsoft Calculator"),
         actions: <Widget>[
@@ -148,7 +146,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.only(bottom: 50.0),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -168,6 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 10.0),
             PowerCard(system: system, isExpanded: powerCardExpanded, onExpand: updateExpandedState),
             SpeedCard(system: system, isExpanded: speedCardExpanded, onExpand: updateExpandedState),
+            SizedBox(height: 50.0),
           ], 
         ),
       ),
