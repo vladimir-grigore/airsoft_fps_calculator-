@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:449825279165:android:c7b55ebbda61a700",
+        "mobilesdk_app_id": "1:449825279165:android:3e804ea45058bcff",
         "android_client_info": {
-          "package_name": "com.example.simple_airsoft_calculator"
+          "package_name": "com.airsoft.airsoft_fps_calculator"
         }
       },
       "oauth_client": [
@@ -30,6 +30,13 @@
             {
               "client_id": "449825279165-dhsnf9cp9tjhlq4dkom3ledh3stn3nt2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "449825279165-pgm54icki38te0jvcioneap0hd1sp1et.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.airsoftFpsCalculator"
+              }
             }
           ]
         }

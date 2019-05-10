@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Airsoft Calculator',
       theme: ThemeData(
         primarySwatch: Colors.indigo,
         fontFamily: 'Yantramanav-Thin',
@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String getAdUnitId() {
     if(Platform.isAndroid) {
-     return "ca-app-pub-6798433568226907/7035588275";
+     return "ca-app-pub-6798433568226907/4215506320";
     } else if(Platform.isIOS) {
      return "ca-app-pub-6798433568226907/8521018195";
     } else {
@@ -125,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: Text("Airsoft Calculator"),
         actions: <Widget>[
           Padding(

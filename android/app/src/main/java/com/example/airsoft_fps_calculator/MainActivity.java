@@ -1,4 +1,4 @@
-package com.example.airsoft_fps_calculator;
+package com.airsoft.airsoft_fps_calculator;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
