@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DeviceOrientation.portraitUp,
     ]);
 
-    FirebaseAdMob.instance.initialize(appId: FirebaseAdMob.testAppId);
+    FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-6798433568226907~4105693670');
     _bannerAd = createBannerAd()..load()..show();
   }
 

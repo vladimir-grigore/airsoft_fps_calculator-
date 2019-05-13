@@ -14,3 +14,6 @@
 -dontwarn org.joda.time.**
 -dontwarn org.shaded.apache.**
 -dontwarn org.ietf.jgss.**
+-dontwarn android.support.v4.**
+-dontwarn com.google.android.gms.**
+-dontwarn com.google.firebase.**
