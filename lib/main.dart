@@ -49,8 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    keywords: <String>['airsoft'],
     nonPersonalizedAds: true,
+    childDirected: false,
   );
 
   BannerAd createBannerAd() {
